@@ -1,4 +1,7 @@
 class Game {
+  constructor() {
+    this.points = 0;
+  }
   drawGrid() {
     // Iteration 1
     // Draw the grid
@@ -6,11 +9,34 @@ class Game {
 
     // Once the grid is done
     background("red");
+  }
 
-    this.mainPlayer = new Player(0, 0, CELL, CELL);
+  collisionCheck() {
+    const aUnderSide = mainPlayer.y + mainPlayer.playerHeight;
+    const bTopSide = treasure.y;
+    if (aUnderSide < bTopSide) {
+      return false;
+    }
 
-    // MOVEMENT FOR THE USER
+    const aRightSide = mainPlayer.x + mainPlayer.playerWidth;
+    const bLeftSide = treasure.x;
+    if (aRightSide < bLeftSide) {
+      return false;
+    }
 
-    // we may want to use keyIsDown for movement (each second that it passes, it calls the function)
+    const aLeftSide = mainPlayer.x;
+    const bRightSide = treasure.x + treasure.width;
+    if (aLeftSide > bRightSide) {
+      return false;
+    }
+
+    const aTopSide = mainPlayer.y;
+    const bUnderSide = treasure.y + treasure.height;
+
+    if (aTopSide > bUnderSide) {
+      return false;
+    }
+
+    return true;
   }
 }
