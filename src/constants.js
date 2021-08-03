@@ -1,3 +1,3 @@
 const WIDTH = 1000;
 const HEIGHT = WIDTH;
-const SQUARE_SIDE = WIDTH / 10;
+const CELL = WIDTH / 10; // Each time something moves, we need to move it CELL (100)
